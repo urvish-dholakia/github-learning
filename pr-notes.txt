@@ -1,0 +1,1 @@
+Pull Requests allow developers to review changes before merging them into main.
