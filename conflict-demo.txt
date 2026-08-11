@@ -1,2 +1,2 @@
-Application Version: 1.0
+Application Version: 1.5
 Environment: Production
