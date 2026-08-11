@@ -1,0 +1,7 @@
+Pull Request review process.
+
+Developer submits code for review.
+
+Why Code Review Matters
+
+Code review helps identify defects, improve code quality, and maintain engineering standards.
