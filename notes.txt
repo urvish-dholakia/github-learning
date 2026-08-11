@@ -1,1 +1,5 @@
 Git is a distributed version control system.
+
+Git tracks changes through commits.
+
+GitHub hosts Git repositories and enables collaboration.
