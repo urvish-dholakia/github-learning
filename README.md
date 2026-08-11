@@ -4,7 +4,7 @@ Hands-on GitHub learning repository.
 
 ## Topics
 
-- Git fundamentals Part
+- Git fundamentals Parts
 - GitHub
 - Branching
 - Pull Requests
