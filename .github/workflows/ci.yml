@@ -22,6 +22,16 @@ jobs:
     steps:
       - name: Display application name
         run: echo "$APP_NAME"
+  
+  Display_Environment:
+    name: Display environment
+    runs-on: ubuntu-latest
+    steps:
+        - name: env display under job
+          env:
+            APP_ENV: test
+          run: echo "$APP_ENV"
+
 
   fetch-code:
     name: "Fetch-Code"
@@ -34,6 +44,8 @@ jobs:
   validate:
     name: "Repository-Validation"
     runs-on: ubuntu-latest
+    env:
+      APP_ENV: test
     needs: fetch-code
     steps:
       - name: Validate repository
@@ -41,8 +53,8 @@ jobs:
       - name: Running CI Validation
         run: |
           echo "Running CI validation"
-          test -f README.md
-          test -f version.txt
+          $APP_ENV -f README.md
+          $APP_ENV -f version.txt
 
   version_display:
     name: "show_version"
