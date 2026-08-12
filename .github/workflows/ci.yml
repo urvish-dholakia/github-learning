@@ -37,7 +37,8 @@ jobs:
     needs: fetch-code
     steps:
       - name: Validate repository
-        uses: actions/checkout@4
+        uses: actions/checkout@v4
+      - name: Running CI Validation
         run: |
           echo "Running CI validation"
           test -f README.md
@@ -49,5 +50,6 @@ jobs:
     needs: validate
     steps:
       - name: Display version
-        uses: actions/checkout@4
+        uses: actions/checkout@v4
+      - name: Open version file 
         run: cat version.txt
