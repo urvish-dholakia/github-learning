@@ -21,3 +21,15 @@ branching, pull requests, releases, and DevOps workflows.
 ## Repository Management
 
 This repository follows GitHub collaboration practices.
+
+## API
+
+### GET /version
+
+Returns the current application version.
+
+Current version:
+
+1.1.0
+
+The endpoint can be used by monitoring systems and deployment verification processes to confirm the application version currently running.

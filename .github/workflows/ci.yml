@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Validate repository
+        run: |
+          echo "Running CI validation"
+          test -f README.md
+          test -f version.txt
+
+      - name: Display version
+        run: cat version.txt
