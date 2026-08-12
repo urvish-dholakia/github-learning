@@ -31,3 +31,5 @@ Returns the current application version.
 Current version:
 
 1.1.0
+
+The endpoint can be used by monitoring systems and deployment verification processes to confirm the application version currently running.
