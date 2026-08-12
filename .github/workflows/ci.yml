@@ -5,13 +5,13 @@ on:
     
   workflow_dispatch:
 
-# pull_request:
-#    branches:
-#      - main
+  pull_request:
+    branches:
+      - main
 
-#  push:
-#    branches:
-#      - main
+  push:
+    branches:
+      - main
 
 jobs:
   validate:
@@ -29,3 +29,8 @@ jobs:
 
       - name: Display version
         run: cat version.txt
+
+      - name: Test failure
+        run: |
+          echo "This step should fail"
+          exit 1
