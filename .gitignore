@@ -1,0 +1,19 @@
+# Build output
+target/
+build/
+dist/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
