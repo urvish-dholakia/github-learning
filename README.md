@@ -1,13 +1,19 @@
 # GitHub Learning
 
-Hands-on GitHub learning repository.
+Hands-on Git and GitHub learning repository.
+
+## Purpose
+
+This repository is used to practice Git, GitHub collaboration,
+branching, pull requests, releases, and DevOps workflows.
 
 ## Topics
 
-- Git fundamentals Parts 02
-- Yo GitHub 
+- Git fundamentals
 - Branching
 - Pull Requests
-- GitHub Actions
-- CI/CD
-- AWS integration
+- Merge conflicts
+- Remote operations
+- Git history
+- Tags
+- GitHub Releases
