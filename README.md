@@ -17,3 +17,7 @@ branching, pull requests, releases, and DevOps workflows.
 - Git history
 - Tags
 - GitHub Releases
+
+## Repository Management
+
+This repository follows GitHub collaboration practices.
