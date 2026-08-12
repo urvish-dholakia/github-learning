@@ -14,23 +14,26 @@ on:
       - main
 
 jobs:
+  fetch_code:
+    name: "Fetch_Code"
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+      - uses: actions/checkout@v7
+
   validate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
       - name: Validate repository
         run: |
           echo "Running CI validation"
           test -f README.md
           test -f version.txt
 
+  version_display:
+    name: "show_version"
+    runs-on: ubuntu-latest
+    steps:
       - name: Display version
         run: cat version.txt
-
-      - name: Test failure
-        run: |
-          echo "This step should fail"
-          exit 1
