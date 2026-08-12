@@ -12,14 +12,26 @@ on:
   push:
     branches:
       - main
+env:
+  APP_NAME: github-learning
 
 jobs:
+  Application_Name:
+    name: "App Name"
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: Display application name
+        run: echo "$APP_NAME"
+
   fetch-code:
     name: "Fetch-Code"
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
   validate:
     name: "Repository-Validation"
