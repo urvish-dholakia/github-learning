@@ -1,0 +1,7 @@
+Application Health Check
+
+Endpoint:
+/health
+
+Expected response:
+HTTP 200
