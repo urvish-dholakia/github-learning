@@ -26,12 +26,15 @@ jobs:
   Display_Environment:
     name: Display environment
     runs-on: ubuntu-latest
+    env:
+      JOB_ENV: job_level_env
     steps:
-        - name: env display under job
+        - name: env display under step
           env:
-            APP_ENV: test
+            APP_ENV: step_level_env
           run: echo "$APP_ENV"
-
+        - name: env display under job
+          run: echo "$JOB_ENV"
 
   fetch-code:
     name: "Fetch-Code"
