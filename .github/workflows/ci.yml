@@ -46,8 +46,7 @@ jobs:
   Display_Github_Env_Var:
     name: Display Github Env Var
     runs-on: ubuntu-latest
-    jobs:
-      steps:
+    steps:
         - name: Github Env Var
           run: echo "Application version: ${{ vars.APP_VERSION }}"
         - name: Github Secret
