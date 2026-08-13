@@ -42,3 +42,33 @@ jobs:
 
       - name: List Docker images
         run: docker images
+
+  container-test:
+    name: Container Test
+    needs: docker-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t springboot-app:${{ github.sha }} .
+
+      - name: Start container
+        run: docker run -d --name springboot-app -p 8080:8080 springboot-app:${{ github.sha }}
+
+      - name: Wait for application
+        run: sleep 20
+
+      - name: Test application
+        run: curl --fail http://localhost:8080
+
+      - name: Show container logs
+        if: failure()
+        run: docker logs springboot-app
+
+      - name: Cleanup container
+        if: always()
+        run: docker rm -f springboot-app
