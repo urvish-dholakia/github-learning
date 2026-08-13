@@ -1,0 +1,81 @@
+name: Docker Container CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Maven Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Maven build
+        run: mvn clean package
+
+  docker-build:
+    name: Docker Build
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t springboot-app:${{ github.sha }} -t springboot-app:ci .
+
+      - name: List Docker images
+        run: docker images
+
+  container-test:
+    name: Container Test
+    needs: docker-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t springboot-app:${{ github.sha }} .
+
+      - name: Start container
+        run: docker run -d --name springboot-app -p 8080:8080 springboot-app:${{ github.sha }}
+
+      - name: Wait for application
+        run: |
+          for i in {1..30}; do
+            if curl --fail http://localhost:8080; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+
+      - name: Test application
+        run: curl --fail http://localhost:8080
+
+      - name: Show container logs
+        if: failure()
+        run: docker logs springboot-app
+
+      - name: Cleanup container
+        if: always()
+        run: docker rm -f springboot-app
