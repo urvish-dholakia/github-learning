@@ -1,0 +1,29 @@
+name: Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  development:
+    name: Deploy to Development
+    runs-on: ubuntu-latest
+
+    environment:
+      name: Development
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show environment
+        run: |
+          echo "Environment: $APP_ENV"
+          echo "Deployment started"
+
+      - name: Simulate deployment
+        env:
+          DEPLOYMENT_TOKEN: ${{ secrets.DEPLOYMENT_TOKEN }}
+        run: |
+          echo "Deployment token is available"
+          echo "Simulated development deployment completed"
