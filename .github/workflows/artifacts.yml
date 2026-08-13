@@ -56,7 +56,7 @@ jobs:
           echo "Workflow: ${{ github.workflow }}" >> build-info.txt
 
       - name: Upload build metadata
-          uses: actions/upload-artifact@v4
-          with:
-            name: build-metadata
-            path: build-info.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-metadata
+          path: build-info.txt
