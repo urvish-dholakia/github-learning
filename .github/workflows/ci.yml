@@ -54,8 +54,8 @@ jobs:
           env: 
             DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
           run: |
-            echo "secret is $DEMO_SECRET
-            echo "length of secret is ${#DEMO_SECRET}
+            echo "secret is $DEMO_SECRET"
+            echo "length of secret is ${#DEMO_SECRET}"
 
   fetch-code:
     name: "Fetch-Code"
