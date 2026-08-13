@@ -34,7 +34,9 @@ jobs:
             APP_ENV: step_level_env
           run: echo "$APP_ENV"
         - name: env display under job
-          run: echo "$JOB_ENV"
+          run: | 
+            echo "$JOB_ENV"
+            echo "$APP_ENV"
 
   fetch-code:
     name: "Fetch-Code"
