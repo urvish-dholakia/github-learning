@@ -1,0 +1,64 @@
+name: Advanced Workflow Control
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Build
+        run: mvn clean package
+
+  test:
+    name: Test
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test
+        run: mvn test
+
+      - name: Failure diagnostics
+        if: failure()
+        run: echo "Test failure detected"
+
+  cleanup:
+    name: Cleanup
+    needs:
+      - build
+      - test
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cleanup
+        run: echo "Cleanup completed" 
+
+  deploy:
+    name: Deploy
+    needs: test
+    if: github.event_name == 'merge' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Deploy
+        run: echo "Deploying application..."
