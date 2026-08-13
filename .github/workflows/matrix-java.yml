@@ -3,6 +3,10 @@ name: Matrix Java Compatibility Test
 on:
   workflow_dispatch:
 
+  pull_request:
+    branches:
+      - main
+
 jobs:
   test:
     name: Java ${{ matrix.java-version }} - ${{ matrix.os }}
