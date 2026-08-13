@@ -13,7 +13,7 @@ on:
     branches:
       - main
 env:
-  APP_NAME: github-learning
+  env_name: github-learning
 
 jobs:
   Application_Name:
@@ -21,22 +21,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display application name
-        run: echo "$APP_NAME"
+        run: echo "$env_name"
   
   Display_Environment:
     name: Display environment
     runs-on: ubuntu-latest
     env:
-      JOB_ENV: job_level_env
+      env_name_job: job_level_env
     steps:
         - name: env display under step
           env:
-            APP_ENV: step_level_env
-          run: echo "$APP_ENV"
+            env_name_step: step_level_env
+          run: echo "$env_name_step"
         - name: env display under job
           run: | 
-            echo "$JOB_ENV"
-            echo "$APP_ENV"
+            echo "-------------"
+            echo "$env_name_job"
+            echo "-------------"
+            echo "$env_name_step"
+            echo "-------------"
+            echo "$env_name"
 
   fetch-code:
     name: "Fetch-Code"
@@ -50,7 +54,7 @@ jobs:
     name: "Repository-Validation"
     runs-on: ubuntu-latest
     env:
-      APP_ENV: test
+      env_name: test
     needs: fetch-code
     steps:
       - name: Validate repository
@@ -58,8 +62,8 @@ jobs:
       - name: Running CI Validation
         run: |
           echo "Running CI validation"
-          $APP_ENV -f README.md
-          $APP_ENV -f version.txt
+          $env_name -f README.md
+          $env_name -f version.txt
 
   version_display:
     name: "show_version"
