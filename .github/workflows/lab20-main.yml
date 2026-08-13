@@ -7,7 +7,7 @@ jobs:
   build:
     uses: ./.github/workflows/reusable-java-build.yml
     with:
-      java-version: '17'
+      java-version: '21'
 
   report:
     needs: build
