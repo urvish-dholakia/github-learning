@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Github Env Var
-        run: echo "Application version: ${{ vars.APP_VERSION }}"
+        run: echo "Application version: "${{ vars.APP_VERSION }}""
       - name: Github Secret
         env: 
           DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
