@@ -2,6 +2,12 @@ name: Setup Java and Maven
 
 description: Common Java and Maven setup
 
+inputs:
+  java-version:
+    description: Java version
+    required: false
+    default: '17'
+
 runs:
   using: composite
 
@@ -10,7 +16,7 @@ runs:
       uses: actions/setup-java@v4
       with:
         distribution: temurin
-        java-version: '21'
+        java-version: ${{ inputs.java-version }}
         cache: maven
 
     - name: Display Java version

@@ -13,6 +13,8 @@ jobs:
 
       - name: Setup Java and Maven
         uses: ./.github/actions/setup-java
+        with:
+          java-version: '21'
 
       - name: Build application
         run: mvn clean package
