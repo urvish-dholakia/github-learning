@@ -51,6 +51,20 @@ jobs:
             echo "Event: ${{ github.event_name }}"
             echo "Workflow: ${{ github.workflow }}"
             echo "Run ID: ${{ github.run_id }}"
+        - name: Detect event
+          run: |
+            if [ "${{ github.event_name }}" = "push" ]; then
+              echo "This is a Push Request"
+            else
+              echo "This is not a Push Request"
+            fi
+        - name: Generate Summary Dashboard
+          run: |
+            echo "### 🚀 Deployment Details" >> $GITHUB_STEP_SUMMARY
+            echo "* **Application:** $env_name" >> $GITHUB_STEP_SUMMARY
+            echo "* **Version:** ${{ vars.APP_VERSION }}" >> $GITHUB_STEP_SUMMARY
+
+
 
   Display_Github_Env_Var:
     name: Display Github Env Var
