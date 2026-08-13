@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-public-service
+  namespace: springboot
+  annotations:
+    # 1. Tells AWS to give the balancer a public IP address
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+    # 2. Ensures compatibility with standard EKS Auto Mode network routing
+    service.beta.kubernetes.io/aws-load-balancer-type: "external"
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+spec:
+  type: LoadBalancer
+  selector:
+    app: springboot-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
