@@ -1,0 +1,33 @@
+name: Status Functions Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Successful step
+        run: echo "Success"
+
+      - name: Intentional failure
+        id: failure-step
+        continue-on-error: true
+        run: exit 1
+
+      - name: Success condition
+        if: success()
+        run: echo "success() evaluated as true"
+
+      - name: Failure condition
+        if: failure()
+        run: echo "failure() evaluated as true"
+
+      - name: Always condition
+        if: always()
+        run: echo "always() executed"
+
+      - name: Cancellation condition
+        if: cancelled()
+        run: echo "cancelled() evaluated as true"
