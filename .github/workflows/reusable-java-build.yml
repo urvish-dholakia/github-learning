@@ -9,10 +9,18 @@ on:
         type: string
         default: '17'
 
+    outputs:
+      build-status:
+        description: Build status
+        value: ${{ jobs.build.outputs.status }}
+
 jobs:
   build:
     name: Build Java Application
     runs-on: ubuntu-latest
+
+    outputs:
+      status: ${{ steps.build-status.outputs.status }}
 
     steps:
       - name: Checkout repository
@@ -26,7 +34,10 @@ jobs:
           cache: maven
 
       - name: Build application
-        run: mvn clean package
+        id: build-status
+        run: |
+          mvn clean package
+          echo "status=success" >> "$GITHUB_OUTPUT"
 
       - name: Verify build output
         run: ls -lh target/

@@ -7,4 +7,22 @@ jobs:
   build:
     uses: ./.github/workflows/reusable-java-build.yml
     with:
+      java-version: '17'
+
+  report:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show build result
+        run: echo "Reusable workflow result: ${{ needs.build.outputs.build-status }}"name: Lab 20 Main Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: ./.github/workflows/reusable-java-build.yml
+    with:
       java-version: '21'
+
