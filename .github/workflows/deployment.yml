@@ -27,3 +27,27 @@ jobs:
         run: |
           echo "Deployment token is available"
           echo "Simulated development deployment completed"
+
+  production:
+    name: Deploy to Production
+    needs: development
+    runs-on: ubuntu-latest
+
+    environment:
+      name: Production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show environment
+        run: |
+          echo "Environment: $APP_ENV"
+          echo "Production deployment started"
+
+      - name: Simulate deployment
+        env:
+          DEPLOYMENT_TOKEN: ${{ secrets.DEPLOYMENT_TOKEN }}
+        run: |
+          echo "Production deployment token is available"
+          echo "Simulated production deployment completed" 
