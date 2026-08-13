@@ -1,0 +1,22 @@
+name: Setup Java and Maven
+
+description: Common Java and Maven setup
+
+runs:
+  using: composite
+
+  steps:
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: '21'
+        cache: maven
+
+    - name: Display Java version
+      shell: bash
+      run: java -version
+
+    - name: Display Maven version
+      shell: bash
+      run: mvn -version
