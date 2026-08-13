@@ -20,7 +20,8 @@ jobs:
           java-version: '21'
 
       - name: Build application
-        run: ./mvnw clean package
+        run:  mvn clean package 
+          
 
       - name: List build output
         run: ls -lh target/
