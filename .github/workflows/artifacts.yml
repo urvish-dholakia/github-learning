@@ -46,21 +46,18 @@ jobs:
         run: ls -lh artifact/
 
 
- - name: Inspect artifact
-        run: |
-          find artifact -type f -maxdepth 2 -print
+      - name: Inspect artifact
+            run: |
+              find artifact -type f -maxdepth 2 -print
 
- - name: Create build metadata
-        run: |
-          echo "Commit SHA: ${{ github.sha }}" > build-info.txt
-          echo "Repository: ${{ github.repository }}" >> build-info.txt
-          echo "Workflow: ${{ github.workflow }}" >> build-info.txt
+      - name: Create build metadata
+            run: |
+              echo "Commit SHA: ${{ github.sha }}" > build-info.txt
+              echo "Repository: ${{ github.repository }}" >> build-info.txt
+              echo "Workflow: ${{ github.workflow }}" >> build-info.txt
 
-  - name: Upload build metadata
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-metadata
-          path: build-info.txt
-
-
-
+      - name: Upload build metadata
+            uses: actions/upload-artifact@v4
+            with:
+              name: build-metadata
+              path: build-info.txt
