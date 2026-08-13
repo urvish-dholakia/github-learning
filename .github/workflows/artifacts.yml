@@ -20,9 +20,8 @@ jobs:
           java-version: '21'
 
       - name: Build application
-        run: |
-	  chmod +x ./mvnw  
-          ./mvnw clean package
+        run:  chmod +x mvnw && ./mvnw clean package 
+          
 
       - name: List build output
         run: ls -lh target/
