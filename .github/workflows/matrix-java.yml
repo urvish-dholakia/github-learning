@@ -1,16 +1,24 @@
-name: Matrix Java Build
+name: Matrix Java Compatibility Test
 
 on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Java ${{ matrix.java-version }}
-    runs-on: ubuntu-latest
+  test:
+    name: Java ${{ matrix.java-version }} - ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
+      max-parallel: 2
+
       matrix:
         java-version: ['17', '21']
+        os: [ubuntu-latest, windows-latest]
+
+        exclude:
+          - java-version: '17'
+            os: windows-latest
 
     steps:
       - name: Checkout repository
@@ -22,6 +30,11 @@ jobs:
           distribution: temurin
           java-version: ${{ matrix.java-version }}
           cache: maven
+
+      - name: Display environment
+        run: |
+          echo "Java Version: ${{ matrix.java-version }}"
+          echo "Operating System: ${{ matrix.os }}"
 
       - name: Display Java version
         run: java -version
