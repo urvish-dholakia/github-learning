@@ -27,7 +27,8 @@ jobs:
     name: Display environment
     runs-on: ubuntu-latest
     env:
-      env_name_job: job_level_env
+      env_name_job: job_level_env_01
+      env_name: job_level_env_02
     steps:
         - name: env display under step
           env:
