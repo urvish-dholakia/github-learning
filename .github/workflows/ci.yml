@@ -47,14 +47,14 @@ jobs:
     name: Display Github Env Var
     runs-on: ubuntu-latest
     steps:
-    - name: Github Env Var
-      run: echo "Application version: ${{ vars.APP_VERSION }}"
-    - name: Github Secret
-      env: 
-        DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
-      run: |
-        echo "secret is $DEMO_SECRET"
-        echo "length of secret is ${#DEMO_SECRET}"
+      - name: Github Env Var
+        run: echo "Application version: ${{ vars.APP_VERSION }}"
+      - name: Github Secret
+        env: 
+          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
+        run: |
+          echo "secret is $DEMO_SECRET"
+          echo "length of secret is ${#DEMO_SECRET}"
 
   fetch-code:
     name: "Fetch-Code"
